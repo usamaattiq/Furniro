@@ -129,12 +129,18 @@ function App() {
           <div className="right_col">
             <p className="productName">Asgaard Sofa</p>
             <p className="price">Rs.250,000.00</p>
-            <div className="star">
-              <FaStar size={25} />
-              <FaStar size={25} />
-              <FaStar size={25} />
-              <FaStar size={25} />
-              <FaStar size={25} />
+            <div className="rating">
+              <div className="star">
+                <FaStar size={18} color="#FFC700" />
+                <FaStar size={18} color="#FFC700" />
+                <FaStar size={18} color="#FFC700" />
+                <FaStar size={18} color="#FFC700" />
+                <FaStar size={18} color="#FFC700" />
+              </div>
+              <img src={line} alt="" />
+              <div className="reviews">
+                <a href="">5 customer reviews</a>
+              </div>
             </div>
             <p className="desc">
               Setting the bar as one of the loudest speakers in its class, the
@@ -148,7 +154,7 @@ function App() {
               <button className="sizeBtn">XL</button>
               <button className="sizeBtn">XS</button>
             </div>
-            <p>Color</p>
+            <p className="c">Color</p>
             <div className="color">
               <button className="color1"></button>
               <button className="color2"></button>
