@@ -15,12 +15,39 @@ import search from "./search.svg";
 import heart from "./heart.svg";
 import shop from "./shop.svg";
 
+// http://jsonblob.com/1254787910447521792
+
 import { FaStar } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 // import star from <FontAwesomeIcon icon="fa-solid fa-star" />
 
 function App() {
+  const [productData, setProductData] = useState();
+
   const heading = "this is my heading";
+
+  useEffect(() => {
+    fetch("https://jsonblob.com/api/jsonBlob/1254787910447521792").then(
+      async (res) => {
+        const abc = await res.json();
+        setProductData(abc);
+        // Ratings(abc.rating);
+        // console.log(abc);
+      }
+    );
+  }, []);
+
+  const Ratings = (length) => {
+    let stars = [];
+    for (let index = 1; index <= 5; index++) {
+      stars.push(
+        <FaStar size={18} color={index <= length ? "#FFC700" : "#cccccc"} />
+      );
+    }
+    return stars;
+  };
+
   return (
     <>
       {/* <Header title={heading} /> */}
@@ -127,27 +154,27 @@ function App() {
           </div>
 
           <div className="right_col">
-            <p className="productName">Asgaard Sofa</p>
-            <p className="price">Rs.250,000.00</p>
+            <p className="productName">{productData?.title}</p>
+            <p className="price">{productData?.price}</p>
             <div className="rating">
               <div className="star">
+                {Ratings(productData?.rating)}
+                {/* <FaStar size={18} color="#FFC700" />
                 <FaStar size={18} color="#FFC700" />
                 <FaStar size={18} color="#FFC700" />
                 <FaStar size={18} color="#FFC700" />
-                <FaStar size={18} color="#FFC700" />
-                <FaStar size={18} color="#FFC700" />
+                <FaStar size={18} color="#FFC700" /> */}
+                {/* {FaStar({
+                  size: 18,
+                  color: "#FFC700",
+                })} */}
               </div>
               <img src={line} alt="" />
               <div className="reviews">
-                <a href="">5 customer reviews</a>
+                <a href="">{productData?.reviews?.length} Customer Reviews</a>
               </div>
             </div>
-            <p className="desc">
-              Setting the bar as one of the loudest speakers in its class, the
-              Kilburn is a compact, stout-hearted hero with a well-balanced
-              audio which boasts a clear midrange and extended highs for a
-              sound.
-            </p>
+            <p className="desc">{productData?.short_description}</p>
             <p className="s">Size</p>
             <div className="size">
               <button className="sizeBtn">L</button>
