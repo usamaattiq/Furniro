@@ -1,0 +1,130 @@
+@media (max-width: 768px) {
+  .App-header {
+    .container {
+      margin-top: 0px;
+      margin-left: 0px;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 15px;
+
+      .menuBtn {
+        /* float: right; */
+      }
+      .menu,
+      .menuFeature {
+        display: none;
+      }
+    }
+  }
+
+  .section1 {
+    background: #f9f1e7;
+    /* height: 100px; */
+    align-content: center;
+    .home {
+      display: flex;
+      padding: 10px 30px;
+      gap: 15px;
+      font-size: 16px;
+      .p1 {
+        color: #9f9f9f;
+      }
+    }
+  }
+
+  .section2 {
+    .container {
+      /* display: flex; */
+      .left_col {
+        display: flex;
+        ul {
+          li {
+            list-style: none;
+          }
+        }
+        .leftBig {
+          width: 70%;
+        }
+      }
+
+      .right_col {
+        .productName {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .App-header {
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 30px;
+      .menuBtn,
+      .exitBtn {
+        display: none;
+      }
+      .menuBar {
+        display: flex;
+        gap: 50px;
+        li {
+          list-style: none;
+          a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+      .menuFeature {
+        display: flex;
+        gap: 35px;
+        li {
+          list-style: none;
+        }
+      }
+    }
+  }
+
+  .section1 {
+    background: #f9f1e7;
+    height: 100px;
+    align-content: center;
+    .home {
+      display: flex;
+      padding: 10px 80px;
+      gap: 30px;
+      font-size: 16px;
+      .p1 {
+        color: #9f9f9f;
+      }
+    }
+  }
+
+  .section2 {
+    .container {
+      display: flex;
+      align-items: center;
+      .left_col {
+        display: flex;
+        ul {
+          li {
+            list-style: none;
+          }
+        }
+        .leftBig {
+          padding: 20px 0px;
+        }
+      }
+
+      .right_col {
+        .productName {
+          font-size: 42px;
+        }
+      }
+    }
+  }
+}
