@@ -111,46 +111,76 @@
         display: flex;
         gap: 20px;
         .sizeBtn {
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
+          .sizeRadio {
+            visibility: hidden;
+            position: absolute;
+          }
+
+          .sizeRadio + .card {
+            border: transparent;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            background-color: #f9f1e7;
+            &:hover {
+              background-color: #efd9be;
+              transition: 0.5s;
+            }
+          }
+
+          .sizeRadio:checked + .card {
+            transition: 0.5s;
+            background-color: #b88e2f;
+            color: white;
+          }
         }
       }
       .c {
         color: #9f9f9f;
         font-size: 14px;
       }
-      .color {
+
+      .colorDiv {
         display: flex;
         gap: 20px;
+      }
+      .color-label {
+        border: 2px solid transparent;
+        padding: 2px;
+      }
 
-        .color1 {
-          border: solid 1px;
-          border-radius: 100%;
-          border-color: transparent;
-          width: 30px;
-          height: 30px;
-          background: #816dfa;
-          cursor: pointer;
-        }
-        .color2 {
-          border: solid 1px;
-          border-radius: 100%;
-          border-color: transparent;
-          width: 30px;
-          height: 30px;
-          background: #000000;
-          cursor: pointer;
-        }
-        .color3 {
-          border: solid 1px;
-          border-radius: 100%;
-          border-color: transparent;
-          width: 30px;
-          height: 30px;
-          background: #b88e2f;
-          cursor: pointer;
-        }
+      .color-label:has(.colorRadio:checked) {
+        padding: 2px;
+        border: solid black 2px;
+        border-radius: 100%;
+      }
+      .colorRadio {
+        visibility: hidden;
+        position: absolute;
+      }
+
+      .color {
+        border: solid 1px;
+        border-radius: 100%;
+        border-color: transparent;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      .color1 {
+        background: #816dfa;
+      }
+
+      .color2 {
+        background: #000000;
+      }
+      .color3 {
+        background: #b88e2f;
       }
 
       .row {

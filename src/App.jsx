@@ -24,8 +24,17 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [productData, setProductData] = useState();
+  const [count, setcount] = useState(0);
+
+  function added() {
+    alert("added");
+  }
 
   const heading = "this is my heading";
+
+  // useEffect(() => {
+  //   console.log(count);
+  // }, [count]);
 
   useEffect(() => {
     fetch("https://jsonblob.com/api/jsonBlob/1254787910447521792").then(
@@ -42,7 +51,11 @@ function App() {
     let stars = [];
     for (let index = 1; index <= 5; index++) {
       stars.push(
-        <FaStar size={18} color={index <= length ? "#FFC700" : "#cccccc"} />
+        <FaStar
+          key={index}
+          size={18}
+          color={index <= length ? "#FFC700" : "#cccccc"}
+        />
       );
     }
     return stars;
@@ -177,25 +190,60 @@ function App() {
             <p className="desc">{productData?.short_description}</p>
             <p className="s">Size</p>
             <div className="size">
-              <button className="sizeBtn">L</button>
-              <button className="sizeBtn">XL</button>
-              <button className="sizeBtn">XS</button>
+              <label className="sizeBtn">
+                <input
+                  type="radio"
+                  name="sizeBtn"
+                  className="sizeRadio"
+                  defaultChecked={true}
+                />
+                <p className="card">L</p>
+              </label>
+              <label className="sizeBtn">
+                <input type="radio" name="sizeBtn" className="sizeRadio" />
+                <p className="card">XL</p>
+              </label>
+              <label className="sizeBtn">
+                <input type="radio" name="sizeBtn" className="sizeRadio" />
+                <p className="card">XS</p>
+              </label>
             </div>
+
             <p className="c">Color</p>
-            <div className="color">
-              <button className="color1"></button>
-              <button className="color2"></button>
-              <button className="color3"></button>
+
+            <div className="colorDiv">
+              <label className=" color-label">
+                <input type="radio" name="colorBtn" className="colorRadio" />
+                <div className="color color1"></div>
+              </label>
+
+              <label className="color-label">
+                <input type="radio" name="colorBtn" className="colorRadio" />
+                <div className="color color2"></div>
+              </label>
+
+              <label className="color-label">
+                <input type="radio" name="colorBtn" className="colorRadio" />
+                <div className="color color3"></div>
+              </label>
             </div>
 
             <div className="row">
               <div className="count">
-                <button>-</button>
-                <p>1</p>
-                <button>+</button>
+                <button
+                  onClick={() => {
+                    if (count > 0) {
+                      setcount(count - 1);
+                    }
+                  }}
+                >
+                  -
+                </button>
+                <p>{count}</p>
+                <button onClick={() => setcount(count + 1)}>+</button>
               </div>
 
-              <button className="addToCart">
+              <button className="addToCart" onDoubleClick={added}>
                 <p>Add To Cart</p>
               </button>
 
