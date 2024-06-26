@@ -41,6 +41,7 @@ function App() {
       async (res) => {
         const abc = await res.json();
         setProductData(abc);
+
         // Ratings(abc.rating);
         // console.log(abc);
       }
@@ -190,29 +191,38 @@ function App() {
             <p className="desc">{productData?.short_description}</p>
             <p className="s">Size</p>
             <div className="size">
-              <label className="sizeBtn">
+              {/* <label className="sizeBtn">
                 <input
                   type="radio"
                   name="sizeBtn"
                   className="sizeRadio"
                   defaultChecked={true}
                 />
-                <p className="card">L</p>
+                <p className="card">{productData?.size[0].value}</p>
               </label>
               <label className="sizeBtn">
                 <input type="radio" name="sizeBtn" className="sizeRadio" />
-                <p className="card">XL</p>
+                <p className="card">{productData?.size[1].value}</p>
               </label>
               <label className="sizeBtn">
                 <input type="radio" name="sizeBtn" className="sizeRadio" />
-                <p className="card">XS</p>
-              </label>
+                <p className="card">{productData?.size[2].value}</p>
+              </label> */}
+
+              {productData?.attributes.size.map((element) => {
+                return (
+                  <label className="sizeBtn">
+                    <input type="radio" name="sizeBtn" className="sizeRadio" />
+                    <p className="card">{element.value}</p>
+                  </label>
+                );
+              })}
             </div>
 
             <p className="c">Color</p>
 
             <div className="colorDiv">
-              <label className=" color-label">
+              {/* <label className=" color-label">
                 <input type="radio" name="colorBtn" className="colorRadio" />
                 <div className="color color1"></div>
               </label>
@@ -225,7 +235,23 @@ function App() {
               <label className="color-label">
                 <input type="radio" name="colorBtn" className="colorRadio" />
                 <div className="color color3"></div>
-              </label>
+              </label> */}
+
+              {productData?.attributes.color.map((element2) => {
+                return (
+                  <label className="color-label">
+                    <input
+                      type="radio"
+                      name="colorBtn"
+                      className="colorRadio"
+                    />
+                    <div
+                      className="color "
+                      style={{ backgroundColor: element2.value }}
+                    ></div>
+                  </label>
+                );
+              })}
             </div>
 
             <div className="row">

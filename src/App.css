@@ -110,34 +110,33 @@
       .size {
         display: flex;
         gap: 20px;
-        .sizeBtn {
-          .sizeRadio {
-            visibility: hidden;
-            position: absolute;
-          }
 
-          .sizeRadio + .card {
-            border: transparent;
-            border-radius: 5px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: black;
-            background-color: #f9f1e7;
-            &:hover {
-              background-color: #efd9be;
-              transition: 0.5s;
-            }
-          }
+        .sizeRadio {
+          visibility: hidden;
+          position: absolute;
+        }
 
-          .sizeRadio:checked + .card {
+        .sizeRadio + .card {
+          border: transparent;
+          border-radius: 5px;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: black;
+          background-color: #f9f1e7;
+          &:hover {
+            background-color: #efd9be;
             transition: 0.5s;
-            background-color: #b88e2f;
-            color: white;
           }
+        }
+
+        .sizeRadio:checked + .card {
+          transition: 0.5s;
+          background-color: #b88e2f;
+          color: white;
         }
       }
       .c {
