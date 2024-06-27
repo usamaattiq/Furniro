@@ -14,6 +14,7 @@ import account from "./account.svg";
 import search from "./search.svg";
 import heart from "./heart.svg";
 import shop from "./shop.svg";
+import Form from "./Form.jsx";
 
 // http://jsonblob.com/1254787910447521792
 
@@ -24,11 +25,12 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [productData, setProductData] = useState();
-  const [count, setcount] = useState(0);
+  const [productCart, setProductCart] = useState({
+    id: "",
+    qty: 0,
+  });
 
-  function added() {
-    alert("added");
-  }
+  const [count, setcount] = useState(0);
 
   const heading = "this is my heading";
 
@@ -62,8 +64,23 @@ function App() {
     return stars;
   };
 
+  useEffect(() => {
+    handleChange("qty", count);
+  }, [count]);
+
+  useEffect(() => {
+    // console.log(productCart);
+  }, [productCart]);
+
+  const handleChange = (key, value) => {
+    const getStateValue = key === "qty" ? count : value;
+    setProductCart({ ...productCart, [key]: getStateValue });
+  };
+
   return (
     <>
+      <Form />
+
       {/* <Header title={heading} /> */}
 
       <header className="App-header">
@@ -209,11 +226,16 @@ function App() {
                 <p className="card">{productData?.size[2].value}</p>
               </label> */}
 
-              {productData?.attributes.size.map((element) => {
+              {productData?.attributes.size.map((element, index) => {
                 return (
-                  <label className="sizeBtn">
-                    <input type="radio" name="sizeBtn" className="sizeRadio" />
-                    <p className="card">{element.value}</p>
+                  <label className="sizeBtn" key={index}>
+                    <input
+                      type="radio"
+                      name="sizeBtn"
+                      className="sizeRadio"
+                      value={element.value}
+                    />
+                    <p className="card">{element.name}</p>
                   </label>
                 );
               })}
@@ -237,17 +259,22 @@ function App() {
                 <div className="color color3"></div>
               </label> */}
 
-              {productData?.attributes.color.map((element2) => {
+              {productData?.attributes.color.map((element2, index) => {
                 return (
-                  <label className="color-label">
+                  <label
+                    key={index}
+                    className="color-label"
+                    style={{ borderColor: element2.code }}
+                  >
                     <input
                       type="radio"
                       name="colorBtn"
                       className="colorRadio"
+                      value={element2.value}
                     />
                     <div
                       className="color "
-                      style={{ backgroundColor: element2.value }}
+                      style={{ backgroundColor: element2.code }}
                     ></div>
                   </label>
                 );
@@ -266,10 +293,16 @@ function App() {
                   -
                 </button>
                 <p>{count}</p>
-                <button onClick={() => setcount(count + 1)}>+</button>
+                <button
+                  onClick={() => {
+                    setcount(count + 1);
+                  }}
+                >
+                  +
+                </button>
               </div>
 
-              <button className="addToCart" onDoubleClick={added}>
+              <button className="addToCart">
                 <p>Add To Cart</p>
               </button>
 
